@@ -11,7 +11,7 @@ public:
 	bool allowMultiple;
 	Item();
 	Item(int _price, string _name, string _description, bool _allowMultiple = false);
-	bool operator==(const Item& other) const;
-	std::string to_string() const;
+	bool operator==(const Item* other) const;
+	virtual std::string to_string() const;
 	virtual ~Item();
 };
