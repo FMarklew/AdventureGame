@@ -21,7 +21,7 @@ bool Item::operator==(const Item& other) const {
 
 std::string Item::to_string() const
 {
-	return name + " (" + description + ") [" + std::to_string(price) + "]";
+	return name + " (" + description + ") [" + std::to_string(price) + "g]";
 }
 
 // destructor

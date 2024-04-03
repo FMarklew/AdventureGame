@@ -1,15 +1,10 @@
-#include "Item.h"
-#include "Weapon.h"
-#include "InventorySystem.h"
-#include <iostream>
-#include <vector>
+#include "AdventureGame.h"
 using std::cout, std::endl, std::vector;
 
 int main()
 {
-    
     InventorySystem inventory = InventorySystem();
-    Item item = Item(10, "Magic sword", "A magical artefact");
+    Item item = Item(10, "Key", "A magical key", true);
 
     cout << "ITEM: " << item.name << " (" << item.description << ") || PRICE: $" << item.price << endl;
 
@@ -18,6 +13,8 @@ int main()
     cout << "WEAPON: " << weapon.name << " (" << weapon.description << ") DAMAGE: " << weapon.damage << " || PRICE: $" << weapon.price << endl;
 
     inventory.AddItem(weapon);
+    inventory.AddItem(item);
+    inventory.AddItem(item);
     inventory.ShowInventory();
 }
 

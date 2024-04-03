@@ -32,10 +32,9 @@ bool InventorySystem::RemoveItem(Item item)
 
 void InventorySystem::ShowInventory()
 {
+	std::cout << "-----Items-----\n";
 	for (auto item = currentItems.begin(); item != currentItems.end(); ++item) {
-		std::cout << item->to_string();
-		if (item != currentItems.end() - 1) {
-			std::cout << ", ";
-		}
+		std::cout << item->to_string() << "\n";
 	}
+	std::cout << "---------------\n";
 }
