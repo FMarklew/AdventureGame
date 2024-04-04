@@ -13,7 +13,7 @@ int main()
 
     Item* item = new Item(10, "Key", "A magical key", true);
     inventory.AddItem(item);
-    Weapon* weapon = new Weapon(15, "Enchanted Sword", "A superbly fine blade enchanted my a mage", 20);
+    Weapon* weapon = new Weapon(15, "Enchanted Sword", "A superbly fine blade enchanted by a mage", 20);
     
     // initial shop options
 
