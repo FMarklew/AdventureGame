@@ -1,65 +1,51 @@
 #include "InventorySystem.h"
+#include <algorithm>
 #include <iostream>
 
-InventorySystem::InventorySystem() {
-
-}
+InventorySystem::InventorySystem() {}
 
 InventorySystem::~InventorySystem() {
-	for (auto& item : currentItems) {
-		delete item;
-	}
+    
 }
 
-bool InventorySystem::AddItem(Item* item)
-{
-	// return iterator for found object if any, currentItems.end() otherwise
-	//             function to find		iter at start	iter at end			pointer to item		pointer to ref item
-	auto foundItem = std::find_if(currentItems.begin(), currentItems.end(), [&item](Item* refItem) {
-		return *refItem == item; // Assuming operator== is correctly implemented in Item
-		});
-
-	if (foundItem == currentItems.end() || item->allowMultiple) {
-		// item not found
-		currentItems.push_back(item);
-		return true;
-	}
-	return false;
+bool InventorySystem::AddItem(const Item& item) {
+    currentItems.push_back(item);
+    return true;
 }
 
-bool InventorySystem::RemoveItem(Item* item)
-{
-	auto it = std::find_if(currentItems.begin(), currentItems.end(), [&item](const Item* refItem) {
-		return *refItem == item;
-		});
-
-	if (it != currentItems.end()) {
-		currentItems.erase(it); // Erase the found item
-		return true;
-	}
-	return false;
+bool InventorySystem::RemoveItem(const Item& item) {
+    for (auto it = currentItems.begin(); it != currentItems.end(); ++it) {
+        if (*it == item) {
+            if (std::distance(currentItems.begin(), it) == equippedItemIndex) {
+                equippedItemIndex = -1; // Un-equip if the removed item was equipped
+            }
+            currentItems.erase(it);
+            return true;
+        }
+    }
+    return false;
 }
 
-void InventorySystem::ShowInventory()
-{
-
-	std::cout << "-----Items-----\n";
-	for (const auto& item : currentItems) {
-		std::cout << "- ";
-		if (dynamic_cast<Weapon*>(item) == currentWeapon) { // Check if item is the currentWeapon
-			std::cout << "[EQUIPPED] ";
-		}
-		std::cout << item->to_string() << "\n";
-	}
-	std::cout << "---------------\n";
+void InventorySystem::EquipWeapon(const Item& weapon) {
+    auto it = std::find_if(currentItems.begin(), currentItems.end(),
+        [&weapon](const Item& item) { return item == weapon; });
+    if (it != currentItems.end()) {
+        equippedItemIndex = std::distance(currentItems.begin(), it);
+    }
+    else {
+        std::cout << "Weapon not found in inventory." << std::endl;
+        equippedItemIndex = -1;
+    }
 }
 
-void InventorySystem::SetCurrentWeapon(Weapon* weapon)
-{
-	auto foundItem = std::find_if(currentItems.begin(), currentItems.end(), [&weapon](const Item* refItem) {
-		return *refItem == weapon;
-		});
-	if (foundItem != currentItems.end()) {
-		currentWeapon = weapon;
-	}
+void InventorySystem::ShowInventory() const {
+    std::cout << "---INVENTORY-------\n";
+    for (size_t i = 0; i < currentItems.size(); ++i) {
+        std::cout << "- " << currentItems[i].to_string();
+        if (static_cast<int>(i) == equippedItemIndex) { // Check if the current item is the equipped weapon
+            std::cout << " [EQUIPPED]";
+        }
+        std::cout << "\n";
+    }
+    std::cout << "--------------------\n";
 }

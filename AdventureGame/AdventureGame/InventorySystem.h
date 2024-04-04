@@ -1,16 +1,21 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 #include "Item.h"
 #include "Weapon.h"
+
 class InventorySystem {
-	std::vector<Item*> currentItems = std::vector<Item*>();
-	Weapon* currentWeapon = nullptr;
 public:
-	InventorySystem();
-	bool AddItem(Item* item);
-	bool RemoveItem(Item* item);
-	void ShowInventory();
-	void SetCurrentWeapon(Weapon* item);
-	~InventorySystem();
+    InventorySystem();
+    ~InventorySystem();
+
+    bool AddItem(const Item& item);
+    bool RemoveItem(const Item& item); 
+    void EquipWeapon(const Item& weapon);
+    void ShowInventory() const;
+
+private:
+    std::vector<Item> currentItems;
+    int equippedItemIndex; // -1 indicates no item is equipped
 };

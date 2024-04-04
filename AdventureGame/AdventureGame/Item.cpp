@@ -13,10 +13,10 @@ Item::Item(int _price, string _name, string _description, bool _allowMultiple)
 }
 
 // equality
-bool Item::operator==(const Item* other) const {
-	return name == other->name &&
-		price == other->price &&
-		description == other->description;
+bool Item::operator==(const Item& other) const {
+	return name == other.name &&
+		price == other.price &&
+		description == other.description;
 }
 
 std::string Item::to_string() const
