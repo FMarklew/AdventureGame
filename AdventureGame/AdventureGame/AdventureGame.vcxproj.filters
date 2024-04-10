@@ -43,7 +43,7 @@
     <ClInclude Include="ItemShop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WeaponTypeInfo.h">
+    <ClInclude Include="WeaponInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

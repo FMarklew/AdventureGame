@@ -1,12 +1,12 @@
 #include "Weapon.h"
 Weapon::Weapon(){}
-Weapon::Weapon(int _price, string _name, string _description, int _damage)
-	: Item(_price, _name, _description), damage(_damage)
+Weapon::Weapon(string _name, string _description, int _price, int _damage, int _range)
+	: Item(_price, _name, _description), damage(_damage), range(_range)
 {
-	damage = _damage;
+
 }
 std::string Weapon::to_string() const {
-	return Item::to_string() + "[" + std::to_string(damage) + "dmg]";
+	return Item::to_string() + "[DMG: " + std::to_string(damage) + ", RANGE: " + std::to_string(range) + "]";
 }
 // destructor
 Weapon::~Weapon() {}

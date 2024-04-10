@@ -4,8 +4,9 @@
 class Weapon : public Item {
 public:
 	int damage;
+	int range = 1;
 	Weapon();
-	Weapon(int _price, string _name, string _description, int _damage);
+	Weapon(string _name, string _description, int _price, int _damage, int _range);
 	std::string to_string() const override;
 	~Weapon();
 };
