@@ -27,6 +27,21 @@ Weapon* ItemShop::GenerateWeapon(int maxVal)
 		weapInfo.range);
 }
 
+std::string ItemShop::to_string() const
+{
+	return "I";
+}
+
+void ItemShop::OnEncounterStarted() const
+{
+	std::cout << "Welcome to the shop!";
+}
+
+void ItemShop::OnEncounterCompleted() const
+{
+	std::cout << "Thank you for shopping with us!";
+}
+
 ItemShop::ItemShop()
 {
 	for (Item* item:currentAvailableItems) {
@@ -36,6 +51,7 @@ ItemShop::ItemShop()
 
 void ItemShop::SetItems(const std::array<Item*, 4>& items) {
 	currentAvailableItems = items; // Direct assignment works because std::array knows its size
+	
 }
 
 const std::array<Item*, 4>& ItemShop::GetItems() const {
@@ -80,5 +96,6 @@ ItemShop::~ItemShop()
 {
 	for (Item* item : currentAvailableItems) {
 		delete item; // Delete each dynamically allocated Item
+		item = nullptr;
 	}
 }

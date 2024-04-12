@@ -2,13 +2,14 @@
 #include "Item.h"
 #include "WeaponInfo.h"
 #include "Weapon.h"
+#include "Encounter.h"
 #include <vector>
 #include <map>
 #include <time.h>
 #include <stdlib.h>
 #include <iostream>
 #include <array>
-class ItemShop
+class ItemShop : public Encounter
 {
 private:
 	static const int maxShopItems = 4;
@@ -23,6 +24,10 @@ public:
 			{Spear, WeaponInfo(8,2,10,4,2)},
 			{Bow, WeaponInfo(10,1,10,5,5)}
 	};
+
+	std::string to_string() const override;
+	void OnEncounterStarted() const override;
+	void OnEncounterCompleted() const override;
 
 	ItemShop(); 
 	void SetItems(const std::array<Item*, 4>& items);

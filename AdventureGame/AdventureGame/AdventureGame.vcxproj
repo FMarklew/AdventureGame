@@ -132,16 +132,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AdventureGame.cpp" />
+    <ClCompile Include="Encounter.cpp" />
     <ClCompile Include="InventorySystem.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemShop.cpp" />
+    <ClCompile Include="Potion.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdventureGame.h" />
+    <ClInclude Include="Encounter.h" />
     <ClInclude Include="InventorySystem.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemShop.h" />
+    <ClInclude Include="Potion.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="WeaponInfo.h" />
   </ItemGroup>
